@@ -69,7 +69,7 @@ html_css_files = ["tutorials.css"]  # opt-in helpers for the tutorial course pag
 # AutoAPI configuration
 autoapi_dirs = ["../src/larvaworld"]
 autoapi_type = "python"
-autoapi_ignore = ["*/gui/*", "*/tests/*"]
+autoapi_ignore = ["*/tests/*"]
 autoapi_root = "autoapi"
 autoapi_add_toctree_entry = False
 autoapi_options = [

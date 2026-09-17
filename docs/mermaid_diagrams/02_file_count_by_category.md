@@ -7,7 +7,7 @@ This pie chart visualizes **how Python files are distributed across different fu
 ### Categories Explained
 
 1. **Model Components** (25%): Agent models, environments, behavioral modules, body physics
-2. **Interfaces** (25%): CLI tools, web dashboards, and legacy GUI components
+2. **Interfaces** (25%): CLI tools and web dashboards
 3. **Visualization** (11%): Plotting, graphing, and data visualization tools
 4. **Registry** (9%): Configuration registry, parameter management, stored configurations
 5. **Simulation** (7%): Simulation engines, genetic algorithms, batch runs
@@ -22,13 +22,12 @@ This distribution demonstrates:
 
 - ✅ **Balanced architecture**: No single module dominates the codebase
 - ✅ **Strong model layer**: 25% dedicated to agent and environment modeling
-- ✅ **Multiple interfaces**: 25% for various user interaction methods (CLI, web, GUI)
+- ✅ **Multiple interfaces**: 25% for CLI and web-based user interaction
 - ✅ **Comprehensive visualization**: 11% for data plotting and presentation
-- ⚠️ **Legacy code included**: GUI (28 files) is deprecated but still counted
 
 ### Key Insight
 
-The Larvaworld platform has a **modular, well-distributed architecture** with dedicated components for modeling, simulation, visualization, and user interfaces. The high count in "Interfaces" reflects the platform's evolution through multiple interaction paradigms (CLI → GUI → Web Apps).
+The Larvaworld platform has a **modular, well-distributed architecture** with dedicated components for modeling, simulation, visualization, and user interfaces.
 
 ---
 
@@ -57,17 +56,17 @@ pie title File Count by Category (155 Files)
 
 ### Breakdown by Category
 
-| Category             | Files | Percentage | Location                      |
-| -------------------- | ----- | ---------- | ----------------------------- |
-| **Model Components** | 38    | 24.5%      | `lib/model/`                  |
-| **Interfaces**       | 39    | 25.2%      | `cli/`, `dashboards/`, `gui/` |
-| **Visualization**    | 17    | 11.0%      | `lib/plot/`                   |
-| **Registry**         | 14    | 9.0%       | `lib/reg/`                    |
-| **Simulation**       | 11    | 7.1%       | `lib/sim/`                    |
-| **Utilities**        | 11    | 7.1%       | `lib/util/`                   |
-| **Parameters**       | 10    | 6.5%       | `lib/param/`                  |
-| **Processing**       | 7     | 4.5%       | `lib/process/`                |
-| **Other**            | 8     | 5.2%       | `lib/screen/`, etc.           |
+| Category             | Files | Percentage | Location              |
+| -------------------- | ----- | ---------- | --------------------- |
+| **Model Components** | 38    | 24.5%      | `lib/model/`          |
+| **Interfaces**       | 11    | 25.2%      | `cli/`, `dashboards/` |
+| **Visualization**    | 17    | 11.0%      | `lib/plot/`           |
+| **Registry**         | 14    | 9.0%       | `lib/reg/`            |
+| **Simulation**       | 11    | 7.1%       | `lib/sim/`            |
+| **Utilities**        | 11    | 7.1%       | `lib/util/`           |
+| **Parameters**       | 10    | 6.5%       | `lib/param/`          |
+| **Processing**       | 7     | 4.5%       | `lib/process/`        |
+| **Other**            | 8     | 5.2%       | `lib/screen/`, etc.   |
 
 ### Interface Components Breakdown
 

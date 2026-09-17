@@ -90,7 +90,6 @@ larvaworld/
 ├── src/larvaworld/          # Core library
 │   ├── cli/                 # Command-line interface
 │   ├── dashboards/          # Web applications (Panel)
-│   ├── gui/                 # Desktop GUI (deprecated)
 │   └── lib/                 # Core modules
 │       ├── model/           # Agent & environment models
 │       ├── sim/             # Simulation engine

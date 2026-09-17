@@ -28,8 +28,6 @@ packages = [
 
 [tool.poetry.scripts]
 larvaworld = "larvaworld.cli.main:main"
-# Currently GUI is not functional
-# larvaworld-gui = "larvaworld.gui.main:main"
 larvaworld-gui-v2 = "larvaworld.gui_v2.main:main"
 larvaworld-app = "larvaworld.dashboards.main:main"
 larvaworld-portal = "larvaworld.portal.serve:main"
@@ -64,8 +62,6 @@ progressbar = "2.5"
 pygame = ">=2.6,<3.0"
 PySide6 = ">=6.8,<7.0"
 pypdf = ">=6.16.1,<7.0"
-# PySimpleGUI is now located on a private PyPI server.  Please add to your pip command: -i https://PySimpleGUI.net/install
-#PySimpleGUI = "*"
 seaborn = ">=0.13,<1.0"
 scikit-learn = ">=1.3,<2.0"
 scipy = ">=1.9,<2.0"
@@ -176,7 +172,6 @@ filterwarnings = [
 [tool.coverage.run]
 branch = true
 omit = [
-  "src/larvaworld/gui/*",                                    # Deprecated
   "src/larvaworld/dashboards/*",                             # Panel apps
   "src/larvaworld/lib/model/modules/nengobrain.py",         # Optional dep
   "src/larvaworld/lib/model/modules/remote_brian_interface.py",  # Optional dep
