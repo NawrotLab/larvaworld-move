@@ -100,6 +100,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Qt system dependencies
+        run: |
+          # Avoid failures from the unrelated Chrome package repository.
+          sudo rm -f \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources
+          sudo apt-get update
+          sudo apt-get install -y libegl1
+
       - name: Install poetry
         run: pipx install poetry
 
@@ -157,6 +166,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Qt system dependencies
+        run: |
+          # Avoid failures from the unrelated Chrome package repository.
+          sudo rm -f \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources
+          sudo apt-get update
+          sudo apt-get install -y libegl1
+
       - name: Install poetry
         run: pipx install poetry
 
@@ -208,6 +226,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install Qt system dependencies
+        run: |
+          # Avoid failures from the unrelated Chrome package repository.
+          sudo rm -f \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources
+          sudo apt-get update
+          sudo apt-get install -y libegl1
 
       - name: Install poetry
         run: pipx install poetry
@@ -278,7 +305,7 @@ jobs:
             /etc/apt/sources.list.d/google-chrome.list \
             /etc/apt/sources.list.d/google-chrome.sources
           sudo apt-get update
-          sudo apt-get install -y liblzo2-dev libblosc-dev libhdf5-dev
+          sudo apt-get install -y liblzo2-dev libblosc-dev libhdf5-dev libegl1
 
       - name: Install system dependencies (macOS)
         if: runner.os == 'macOS'

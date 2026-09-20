@@ -441,7 +441,8 @@ def test_stop_criteria(pars: de.DEBPars) -> None:
 
     target = 0.5 * pars.E_Hp
     st, _ = de.run(pars, engine="closed", dt=1.0 / 24.0, f=1.0, until_maturity=target)
-    assert st.E_H >= target
+    # Terminal-event interpolation may land just below the target due to roundoff.
+    assert st.E_H == pytest.approx(target, rel=0, abs=1e-10)
 
 
 def test_callable_functional_response(pars: de.DEBPars) -> None:

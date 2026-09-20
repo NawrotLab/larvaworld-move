@@ -23,14 +23,27 @@ class TestConfExpandIsolation:
     def test_expand_does_not_return_the_stored_object(self):
         assert reg.conf.Exp.expand(self.EXP) is not reg.conf.Exp.getID(self.EXP)
 
-    def test_editing_an_expanded_conf_leaves_the_store_alone(self):
-        before = reg.conf.Exp.getID(self.EXP).enrichment.anot_keys
-        assert before, "the fixture experiment should request annotation"
+    @pytest.mark.parametrize(
+        "anot_keys",
+        [[], ["bout_detection", "bout_distribution"]],
+        ids=["no-annotations", "with-annotations"],
+    )
+    def test_editing_an_expanded_conf_leaves_the_store_alone(
+        self, monkeypatch, anot_keys
+    ):
+        conf = reg.conf.Exp.getID(self.EXP).get_copy()
+        conf.enrichment.anot_keys = list(anot_keys)
+        # Replace only the in-memory entry; monkeypatch restores it after the test.
+        monkeypatch.setitem(reg.conf.Exp.dict, self.EXP, conf)
+        before = conf.enrichment.get_copy()
 
         p = reg.conf.Exp.expand(self.EXP)
+        p.enrichment.anot_keys.append("interference")
+        assert reg.conf.Exp.getID(self.EXP).enrichment == before
+
         p.enrichment = {}
 
-        assert reg.conf.Exp.getID(self.EXP).enrichment.anot_keys == before
+        assert reg.conf.Exp.getID(self.EXP).enrichment == before
 
     def test_the_substituted_sub_configurations_are_copies_too(self):
         """An expanded Exp used to share its Model and Env with their stores."""
