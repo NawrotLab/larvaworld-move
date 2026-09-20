@@ -9,10 +9,15 @@ them explicitly. These tests keep that from being undone by accident.
 
 from __future__ import annotations
 
-import tomllib
 from pathlib import Path
 
 import pytest
+
+try:
+    import tomllib
+except ModuleNotFoundError:
+    # Python 3.10: pytest already depends on the tomli backport.
+    import tomli as tomllib
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PYPROJECT = REPO_ROOT / "pyproject.toml"
