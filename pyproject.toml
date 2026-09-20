@@ -28,8 +28,6 @@ packages = [
 
 [tool.poetry.scripts]
 larvaworld = "larvaworld.cli.main:main"
-# Currently GUI is not functional
-# larvaworld-gui = "larvaworld.gui.main:main"
 larvaworld-gui-v2 = "larvaworld.gui_v2.main:main"
 larvaworld-app = "larvaworld.dashboards.main:main"
 larvaworld-portal = "larvaworld.portal.serve:main"
@@ -44,7 +42,7 @@ typer = { extras = [ "all" ], version = "^0.9.0" }
 
 agentpy = "0.1.*"
 argparse = "1.4.*"
-geopandas = ">=0.13,<1.0"
+geopandas = ">=1.1.2,<2.0"
 holoviews = ">=1.17,<2.0"
 hvplot = ">=0.10,<1.0"
 imageio = {extras = ["ffmpeg"], version = ">=2.35,<3.0"}
@@ -63,9 +61,7 @@ powerlaw = "1.5"
 progressbar = "2.5"
 pygame = ">=2.6,<3.0"
 PySide6 = ">=6.8,<7.0"
-pypdf = ">=5.0,<6.0"
-# PySimpleGUI is now located on a private PyPI server.  Please add to your pip command: -i https://PySimpleGUI.net/install
-#PySimpleGUI = "*"
+pypdf = ">=6.16.1,<7.0"
 seaborn = ">=0.13,<1.0"
 scikit-learn = ">=1.3,<2.0"
 scipy = ">=1.9,<2.0"
@@ -114,6 +110,8 @@ sphinx-autoapi = "*"
 sphinxcontrib-mermaid = "*"
 nbsphinx = "*"
 myst-nb = "*"
+sphinx-design = "*"
+sphinx-copybutton = "*"
 
 [tool.ruff]
 target-version = "py310"
@@ -152,13 +150,12 @@ lint.per-file-ignores."tests/**/*" = [
 lint.isort.known-first-party = [ "larvaworld", "tests" ]
 
 [tool.pytest.ini_options]
-addopts = """\
-    -v
-    -Wdefault
-    -n auto
-    --cov=larvaworld
-    --cov-report=xml
-    """
+# Kept deliberately light: parallelism and coverage are opt-in, not default.
+# `-n auto` spawns one worker per core and each worker pays a ~4s registry
+# import that dominates the actual test work -- it made a 9-test run take 104s
+# instead of 5s, and was a net loss even on the full suite. CI passes
+# `-n auto --cov=larvaworld --cov-report=xml` explicitly (.github/workflows/ci.yml).
+addopts = "-v -Wdefault"
 pythonpath = [ "src" ]
 markers = [
     "fast: Fast unit/logic tests without heavy simulations or plotting.",
@@ -175,7 +172,6 @@ filterwarnings = [
 [tool.coverage.run]
 branch = true
 omit = [
-  "src/larvaworld/gui/*",                                    # Deprecated
   "src/larvaworld/dashboards/*",                             # Panel apps
   "src/larvaworld/lib/model/modules/nengobrain.py",         # Optional dep
   "src/larvaworld/lib/model/modules/remote_brian_interface.py",  # Optional dep

@@ -100,6 +100,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Qt system dependencies
+        run: |
+          # Avoid failures from the unrelated Chrome package repository.
+          sudo rm -f \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources
+          sudo apt-get update
+          sudo apt-get install -y libegl1
+
       - name: Install poetry
         run: pipx install poetry
 
@@ -138,6 +147,9 @@ jobs:
       - name: Run full test suite (parallel + coverage)
         run: poetry run pytest -n auto --cov=larvaworld --cov-report=term --cov-report=xml
         shell: bash
+        env:
+          # Runs the exhaustive registry sweeps that are skipped locally for speed.
+          LARVAWORLD_EXHAUSTIVE_TESTS: "1"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -153,6 +165,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install Qt system dependencies
+        run: |
+          # Avoid failures from the unrelated Chrome package repository.
+          sudo rm -f \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources
+          sudo apt-get update
+          sudo apt-get install -y libegl1
 
       - name: Install poetry
         run: pipx install poetry
@@ -187,6 +208,9 @@ jobs:
       - name: Run full test suite (parallel + coverage)
         run: poetry run pytest -n auto --cov=larvaworld --cov-report=term --cov-report=xml
         shell: bash
+        env:
+          # Runs the exhaustive registry sweeps that are skipped locally for speed.
+          LARVAWORLD_EXHAUSTIVE_TESTS: "1"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -202,6 +226,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install Qt system dependencies
+        run: |
+          # Avoid failures from the unrelated Chrome package repository.
+          sudo rm -f \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources
+          sudo apt-get update
+          sudo apt-get install -y libegl1
 
       - name: Install poetry
         run: pipx install poetry
@@ -236,6 +269,9 @@ jobs:
       - name: Run full test suite (parallel + coverage)
         run: poetry run pytest -n auto --cov=larvaworld --cov-report=term --cov-report=xml
         shell: bash
+        env:
+          # Runs the exhaustive registry sweeps that are skipped locally for speed.
+          LARVAWORLD_EXHAUSTIVE_TESTS: "1"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
@@ -263,8 +299,13 @@ jobs:
       - name: Install system dependencies (Ubuntu)
         if: runner.os == 'Linux'
         run: |
+          # These packages come from Ubuntu; an unrelated Chrome repository can
+          # temporarily serve inconsistent metadata and block apt entirely.
+          sudo rm -f \
+            /etc/apt/sources.list.d/google-chrome.list \
+            /etc/apt/sources.list.d/google-chrome.sources
           sudo apt-get update
-          sudo apt-get install -y liblzo2-dev libblosc-dev libhdf5-dev
+          sudo apt-get install -y liblzo2-dev libblosc-dev libhdf5-dev libegl1
 
       - name: Install system dependencies (macOS)
         if: runner.os == 'macOS'
@@ -299,6 +340,9 @@ jobs:
       - name: Run full test suite (parallel + coverage)
         run: poetry run pytest -n auto --cov=larvaworld --cov-report=term --cov-report=xml
         shell: bash
+        env:
+          # Runs the exhaustive registry sweeps that are skipped locally for speed.
+          LARVAWORLD_EXHAUSTIVE_TESTS: "1"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

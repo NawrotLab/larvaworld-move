@@ -80,14 +80,6 @@ Access via: `http://localhost:5006`
 
 ---
 
-### GUI (Deprecated)
-
-**Location**: `/src/larvaworld/gui/`
-
-:::{warning}
-The desktop GUI built with **PySimpleGUI** is **deprecated** but still present for backward compatibility. It is not included in the accessible entry points and may not be fully supported in current releases. **Use CLI or Web apps instead**.
-:::
-
 ---
 
 ## Layer 2: Simulation Engine

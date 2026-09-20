@@ -300,12 +300,6 @@ larvaworld-app
 
 Then open [http://localhost:5006](http://localhost:5006) in your browser (if it does not open automatically).
 
-## GUI (deprecated)
-
-A desktop graphical user interface (GUI) was originally provided to support data import, inspection and analysis; configuration of models, life history and environments; visualization and data-acquisition setup; and control of simulations, essays and batch runs via dedicated tabs.
-
-The legacy GUI is no longer actively maintained and its entry point is disabled in the current PyPI package. For current workflows we recommend using the command-line interface (`larvaworld`) and the web-based applications (`larvaworld-app`).
-
 ## Repository structure
 
 The main components of the repository are organized as follows:
@@ -315,7 +309,6 @@ larvaworld/
 ├── src/larvaworld/        # Main source code
 │   ├── cli/               # Command-line interface entry points
 │   ├── dashboards/        # Web-based apps (larvaworld-app)
-│   ├── gui/               # Legacy desktop GUI (deprecated)
 │   └── lib/               # Core library (models, simulation, data, plotting)
 ├── tests/                 # Test suite (pytest)
 ├── docs/                  # Sphinx documentation (Read the Docs)

@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 from larvaworld.lib import reg, util
 from larvaworld.lib.reg import config
 from larvaworld.lib.reg.generators import ExpConf
@@ -41,12 +43,17 @@ def test_ref_path_to_ref_roots_relative_dir_in_data_dir():
     )
 
 
-def test_expconf_coerces_raw_larva_group_payloads():
+@pytest.mark.parametrize("expand_model", [False, True], ids=["model-id", "model-dict"])
+def test_expconf_coerces_raw_larva_group_payloads(expand_model):
     parameters = reg.conf.Exp.getID("dish").get_copy()
+    # Set the input explicitly; getID() does not expand stored model IDs.
+    model = reg.conf.Model.getID("explorer").get_copy() if expand_model else "explorer"
+    parameters.larva_groups["explorer"].model = model
 
     exp = ExpConf(**dict(parameters))
 
     assert all(
         isinstance(group, reg.gen.LarvaGroup) for group in exp.larva_groups.values()
     )
-    assert isinstance(exp.larva_groups["explorer"].model, dict)
+    assert isinstance(exp.larva_groups["explorer"].model, dict if expand_model else str)
+    assert exp.larva_groups["explorer"].model == model

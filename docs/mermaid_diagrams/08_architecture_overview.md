@@ -77,14 +77,6 @@ graph TB
 - **Technology**: Panel (Holoviz stack), Bokeh
 - **Access**: Interactive web applications
 
-**GUI (Graphical User Interface) - Deprecated**
-
-- **Location**: `/src/larvaworld/gui/`
-- **Files**: 28 files across `gui_aux/` and `tabs/`
-- **Status**: ⚠️ **Deprecated** but still present
-- **Technology**: PySimpleGUI-based desktop application
-- **Note**: Legacy interface maintained for backward compatibility; not included in the PyPI entry points and may not be fully supported in current releases
-
 ### Layer 2: Simulation Engine ✅
 
 **Simulation Modes**
