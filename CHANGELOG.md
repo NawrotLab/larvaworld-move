@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.5.1 (2026-09-27)
+
+### Fix
+
+- Force branch context before python-semantic-release publish ([`339d9a3`](https://github.com/NawrotLab/larvaworld-move/commit/339d9a352f1e9f6fe7938df1ac37530444b68a5e))
+
 ## v2.5.0 (2026-09-20)
 
 ### Fix
