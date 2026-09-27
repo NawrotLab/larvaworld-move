@@ -28,6 +28,10 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.inputs.tag || github.ref }}
 
+      - name: Setup | Force correct release branch on tagged commit
+        run: |
+          git checkout -B master
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
